@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin · Inscriptos A.A.Z</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="wide">
+  <h1><span>Administración</span>Inscriptos 25 Aniversario</h1>
+
+  <section class="card" id="login" style="max-width:380px;margin:24px auto">
+    <form id="lf">
+      <label for="pw">Contraseña</label>
+      <input id="pw" type="password" autocomplete="current-password" autofocus>
+      <button class="full" type="submit">Entrar</button>
+      <div class="err-t" id="pwe"></div>
+    </form>
+  </section>
+
+  <div id="panel" style="display:none">
+    <section class="card">
+      <div class="stats">
+        <div class="stat"><b id="c1">0</b><small>Inscriptos</small></div>
+        <div class="stat"><b id="c2">0</b><small>Personas en total</small></div>
+        <div class="stat"><b id="c3">$0</b><small>Recaudación estimada</small></div>
+      </div>
+      <div class="row">
+        <button class="sec" id="bd">Descargar inscriptos.json</button>
+        <button class="sec" id="bc">Copiar JSON</button>
+        <button class="sec" id="br">Actualizar</button>
+        <button class="sec" id="bo">Salir</button>
+      </div>
+    </section>
+    <section class="card tw">
+      <table>
+        <thead><tr><th>#</th><th>Nombre</th><th>Apellido</th><th>Personas</th><th>Total</th><th>Fecha</th><th></th></tr></thead>
+        <tbody id="tb"></tbody>
+      </table>
+      <p id="vacio" class="sub" style="display:none">Todavía no hay inscriptos.</p>
+    </section>
+  </div>
+</main>
+<script src="db.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inscripción · 25 Aniversario A.A.Z Aerocontrolados</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <div class="logo">✈️</div>
+  <h1><span>Invitación</span>25 Aniversario A.A.Z Aerocontrolados</h1>
+  <p class="sub">📅 17 de octubre · ¡Te esperamos!</p>
+
+  <section class="card">
+    <div class="price"><span>Valor de la inscripción<br><small style="color:var(--mut)">por persona</small></span><b>$20.000</b></div>
+    <form id="f">
+      <div class="two">
+        <div><label for="n">Nombre</label><input id="n" autocomplete="given-name" required></div>
+        <div><label for="a">Apellido</label><input id="a" autocomplete="family-name" required></div>
+      </div>
+      <label for="p">Cantidad de personas</label><input id="p" type="number" min="1" max="20" value="1" required>
+      <div class="total"><span>Total a abonar</span><b id="tot">$20.000</b></div>
+      <button class="full" id="send" type="submit">Inscribirme</button>
+    </form>
+    <div class="msg" id="msg"></div>
+  </section>
+</main>
+<script src="db.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
