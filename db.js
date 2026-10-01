@@ -2,6 +2,8 @@
 // Si más adelante tenés un backend, solo hay que cambiar estas funciones.
 const DB = {
   PRECIO: 20000,
+    PRECIO_MENOR: 10000,
+    total(mayores, menores) { return this.PRECIO * (1 + mayores) + this.PRECIO_MENOR * menores; },
   KEY: "aaz25_inscripciones",
 
   async archivo() {
