@@ -54,9 +54,29 @@ $("br").onclick = cargar;
 $("bc").onclick = () => navigator.clipboard.writeText(DB.armarJSON(lista))
   .then(() => { $("bc").textContent = "¡Copiado!"; }, () => prompt("Copiá el JSON:", DB.armarJSON(lista)));
 $("bd").onclick = () => {
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(new Blob([DB.armarCSV(lista)], { type: "text/csv;charset=utf-8" }));
-  a.download = "inscriptos-aaz.csv"; a.click();
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const personas = lista.reduce((a, r) => a + (r.personas || 0), 0);
+  const total = lista.reduce((a, r) => a + (r.total || 0), 0);
+
+  doc.setFontSize(14);
+  doc.text("25 Aniversario A.A.Z Aerocontrolados - Inscriptos", 14, 16);
+  doc.setFontSize(10);
+  doc.text("Inscriptos: " + lista.length + "   |   Personas: " + personas + "   |   Total: " + DB.dinero(total), 14, 23);
+
+  doc.autoTable({
+    startY: 28,
+    head: [["N°", "Nombre", "Apellido", "Personas", "Menores", "Total", "Fecha"]],
+    body: lista.map((r, i) => [
+      i + 1, r.nombre, r.apellido || "-", r.personas || 0, r.menores || 0,
+      DB.dinero(r.total || 0),
+      r.fecha ? new Date(r.fecha).toLocaleString("es-AR") : "-"
+    ]),
+    styles: { fontSize: 9 },
+    headStyles: { fillColor: [224, 38, 43] }
+  });
+
+  doc.save("inscriptos-aaz.pdf");
 };
 
 if (getPass()) entrar();
