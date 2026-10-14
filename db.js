@@ -29,5 +29,18 @@ const DB = {
       valor: this.PRECIO, contador: lista.length, inscriptos: lista
     }, null, 2);
   },
+    armarCSV(lista) {
+    const esc = v => {
+      let s = String(v == null ? "" : v);
+      if (/^[=+\-@]/.test(s)) s = "'" + s; // evita que Excel interprete texto como fórmula
+      return '"' + s.replace(/"/g, '""') + '"';
+    };
+    const cab = ["N°", "Nombre", "Apellido", "Personas", "Menores", "Total", "Fecha"];
+    const filas = lista.map((r, i) => [
+      i + 1, r.nombre, r.apellido || "", r.personas || 0, r.menores || 0, r.total || 0,
+      r.fecha ? new Date(r.fecha).toLocaleString("es-AR") : ""
+    ]);
+    return "\uFEFF" + [cab].concat(filas).map(f => f.map(esc).join(";")).join("\r\n");
+  },
   dinero(n) { return "$" + n.toLocaleString("es-AR"); }
 };

@@ -55,8 +55,8 @@ $("bc").onclick = () => navigator.clipboard.writeText(DB.armarJSON(lista))
   .then(() => { $("bc").textContent = "¡Copiado!"; }, () => prompt("Copiá el JSON:", DB.armarJSON(lista)));
 $("bd").onclick = () => {
   const a = document.createElement("a");
-  a.href = URL.createObjectURL(new Blob([DB.armarJSON(lista)], { type: "application/json" }));
-  a.download = "inscriptos.json"; a.click();
+  a.href = URL.createObjectURL(new Blob([DB.armarCSV(lista)], { type: "text/csv;charset=utf-8" }));
+  a.download = "inscriptos-aaz.csv"; a.click();
 };
 
 if (getPass()) entrar();
